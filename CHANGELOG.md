@@ -1,3 +1,4 @@
+<!-- TODO：このファイルをどこまで編集して良いかライセンスの確認必要 -->
 # Changelog
 
 All notable changes to this project will be documented in this file.
