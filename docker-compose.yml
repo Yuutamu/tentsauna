@@ -128,6 +128,13 @@ services:
   css:
     <<: *default-assets
     command: "yarn build:css"
+  
+  # Stripe CLI 起動せずに決済可能にする
+  stripe:
+    image: stripe/stripe-cli:latest
+    command: "listen --forward-to localhost:8000/webhooks --api-key ${STRIPE_API_KEY}"
+    extra_hosts:
+    - "localhost:${PRIVATE_IP_ADDRESS}"
 
 volumes:
   postgres: {}
