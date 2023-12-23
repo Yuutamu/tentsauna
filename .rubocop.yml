@@ -1,0 +1,28 @@
+AllCops:
+  # チェック対象から除外するディレクトリ,ファイル
+  Exclude:
+    - "vendor/**/*"
+    - "db/**/*"
+    - "bin/*"
+    - "node_modules/**/*"
+    - "config/initializers/devise.rb"
+    - "config/environments/*.rb"
+    - "Gemfile"
+    - "Rakefile"
+
+# # frozen_string_literal: true というマジックコメントのないファイルの許可
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# コンパクト記法とネスト記法の両方を許可
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# ドキュメントの無い public class を許可
+Style/Documentation:
+  Enabled: false
+
+# config/routes.rb をブロック行数のチェックから除外
+Metrics/BlockLength:
+  Exclude:
+    - "config/routes.rb"
