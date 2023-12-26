@@ -5,7 +5,6 @@
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= action_cable_meta_tag %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A production ready example Rails app that's using Docker and Docker Compose.">
@@ -24,42 +23,152 @@
   </head>
 
   <body class="flex flex-col h-screen justify-between">
-    <div class="bg-gray-700">
-      <div class="max-w-screen-lg mx-auto py-3 px-3 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between flex-wrap">
-          <div class="flex-1 flex items-center">
-            <span class="flex p-2 rounded-lg bg-gray-900">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            </span>
-            <p class="ml-3 font-medium text-white truncate">
-              Rails <%= Rails::VERSION::STRING %> and Ruby <%= ENV["RUBY_VERSION"] %>
-            </p>
-          </div>
-          <div class="mt-2 order-3 w-full sm:mt-0 sm:w-auto">
-            <div class="rounded-md shadow-sm">
-              <span class="flex items-center justify-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-gray-500">
-                RAILS_ENV = <%= Rails.env %>
-              </span>
-            </div>
-          </div>
+  <div class='bg-[#CBBEA6] mb-8 z-10'>
+    <div class='container mx-auto flex max-w-4xl items-center px-2 py-5'>
+      <div class='mx-auto flex w-full flex-wrap items-center'>
+        <div class='flex w-full justify-center font-extrabold text-white lg:w-1/2 lg:justify-start'>
+          <%= link_to root_path, class: "text-2xl text-white no-underline hover:text-gray-600 hover:no-underline" do %>
+            <span class='text-white hover:text-gray-600'>◎  TentSauna</span>
+          <% end %>
+        </div>
+        <div class='flex w-full content-center justify-between pt-2 lg:w-1/2 lg:justify-end lg:pt-0'>
+          <ul class='list-reset flex flex-1 items-center justify-center lg:flex-none h-12'>
+            <%# 管理者がログインしている場合 %>
+            <% if admin_signed_in? %>
+                <li class="text-white px-4 no-underline">
+                  <%= link_to admin_root_path do%>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
+                      <path d="M560-440q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM280-320q-33 0-56.5-23.5T200-400v-320q0-33 23.5-56.5T280-800h560q33 0 56.5 23.5T920-720v320q0 33-23.5 56.5T840-320H280Zm80-80h400q0-33 23.5-56.5T840-480v-160q-33 0-56.5-23.5T760-720H360q0 33-23.5 56.5T280-640v160q33 0 56.5 23.5T360-400Zm440 240H120q-33 0-56.5-23.5T40-240v-440h80v440h680v80ZM280-400v-320 320Z"/>
+                    </svg>
+                  <% end %>
+                </li>
+                <li class='px-4 text-white no-underline'>
+                  <%= link_to admin_products_path do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="white" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
+                    <path d="M200-120q-17 0-28.5-11.5T160-160v-40q-50 0-85-35t-35-85v-200q0-50 35-85t85-35v-80q0-50 35-85t85-35h400q50 0 85 35t35 85v80q50 0 85 35t35 85v200q0 50-35 85t-85 35v40q0 17-11.5 28.5T760-120q-17 0-28.5-11.5T720-160v-40H240v40q0 17-11.5 28.5T200-120Zm-40-160h640q17 0 28.5-11.5T840-320v-200q0-17-11.5-28.5T800-560q-17 0-28.5 11.5T760-520v160H200v-160q0-17-11.5-28.5T160-560q-17 0-28.5 11.5T120-520v200q0 17 11.5 28.5T160-280Zm120-160h400v-80q0-27 11-49t29-39v-112q0-17-11.5-28.5T680-760H280q-17 0-28.5 11.5T240-720v112q18 17 29 39t11 49v80Zm200 0Zm0 160Zm0-80Z"/>
+                  </svg>
+                  <% end %>
+                </li>
+                <li class='no-underline'>
+                  <div class="flex items-center justify-center">
+                    <div class="relative inline-block text-left dropdown">
+                      <button class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out  rounded-md" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="white" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
+                          <path d="M40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm720 0v-120q0-44-24.5-84.5T666-434q51 6 96 20.5t84 35.5q36 20 55 44.5t19 53.5v120H760ZM360-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm400-160q0 66-47 113t-113 47q-11 0-28-2.5t-28-5.5q27-32 41.5-71t14.5-81q0-42-14.5-81T544-792q14-5 28-6.5t28-1.5q66 0 113 47t47 113ZM120-240h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T440-640q0-33-23.5-56.5T360-720q-33 0-56.5 23.5T280-640q0 33 23.5 56.5T360-560Zm0 320Zm0-400Z"/>
+                        </svg>
+                      </button>
+                      <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
+                        <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                          <div class="px-4 py-3">         
+                            <p class="text-sm leading-5">Signed in as</p>
+                            <p class="text-sm font-medium leading-5 text-gray-900 truncate"><%= current_admin.email %></p>
+                          </div>
+                          <div class="py-1">
+                            <%= link_to destroy_admin_session_path, data: { turbo_method: :delete }, class: "text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                              Sign out
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+            <%# 顧客がログインしている場合 %>
+            <% elsif customer_signed_in? %>
+              <%# nav %>
+              <li class='text-white no-underline'>
+                <%= link_to products_path, class: "p-4 relative border-2 border-transparent rounded-full focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out flex" do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="white" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
+                    <path d="M200-120q-17 0-28.5-11.5T160-160v-40q-50 0-85-35t-35-85v-200q0-50 35-85t85-35v-80q0-50 35-85t85-35h400q50 0 85 35t35 85v80q50 0 85 35t35 85v200q0 50-35 85t-85 35v40q0 17-11.5 28.5T760-120q-17 0-28.5-11.5T720-160v-40H240v40q0 17-11.5 28.5T200-120Zm-40-160h640q17 0 28.5-11.5T840-320v-200q0-17-11.5-28.5T800-560q-17 0-28.5 11.5T760-520v160H200v-160q0-17-11.5-28.5T160-560q-17 0-28.5 11.5T120-520v200q0 17 11.5 28.5T160-280Zm120-160h400v-80q0-27 11-49t29-39v-112q0-17-11.5-28.5T680-760H280q-17 0-28.5 11.5T240-720v112q18 17 29 39t11 49v80Zm200 0Zm0 160Zm0-80Z"/>
+                  </svg>
+                <% end %>
+              </li>
+              <li class='text-white no-underline'>
+                <%= link_to cart_items_path, class: "p-4 relative border-2 border-transparent rounded-full focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out flex" do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="white" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
+                    <path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/>
+                  </svg>
+                  <span class="absolute top-0 right-0">
+                    <div class="inline-flex items-center px-1.5 py-0.4 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-400 text-white">
+                      <%= total_quantity(current_customer.cart_items) %>
+                    </div>
+                  </span>
+                <% end %>
+              </li>
+              <li class="no-underline">
+                <div class="flex items-center justify-center">
+                  <div class="relative inline-block text-left dropdown">
+                    <button class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out  rounded-md" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="white" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
+                      <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
+                      </svg>
+                    </button>
+                    <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
+                      <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                        <div class="px-4 py-3">         
+                          <p class="text-sm leading-5">Signed in as</p>
+                          <p class="text-sm font-medium leading-5 text-gray-900 truncate"><%= current_customer.email %></p>
+                        </div>
+                        <div class="py-1">
+                          <%= link_to edit_customer_registration_path, class: "text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                            Account settings
+                          <% end %>
+                          <%= link_to orders_path, class: "text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                            Order Histories
+                          <% end %>
+                        </div>
+                        <div class="py-1">
+                          <%= link_to destroy_customer_session_path, data: { turbo_method: :delete }, class: "text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                            Sign out
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            <%# どちらもログインしていない場合 %>
+            <% else %>
+              <li class='px-4 text-white no-underline hover:text-gray-600'>
+                <%= link_to "Sign Up", new_customer_registration_path %>
+              </li>
+              <li class='px-4 text-white no-underline hover:text-gray-600'>
+                <%= link_to "Sign In", new_customer_session_path %>
+              </li>
+            <% end %>
+          </ul>
         </div>
       </div>
     </div>
+  </div>
 
-    <main class="max-w-screen-lg mx-auto mb-auto">
-      <%= yield %>
-    </main>
+  <% if flash[:notice] %>
+    <div class="p-4 mb-4 text-md text-blue-700 text-center font-bold">
+      <%= notice %>
+    </div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="p-4 mb-4 text-md text-red-700 text-center font-bold">
+      <%= alert %>
+    </div>
+  <% end %>
 
-    <footer class="text-center mt-6 pb-6 h-10">
-      <p class="text-gray-500">
-        <a class="border-b mb-1" href="https://github.com/nickjj/docker-rails-example">Coded</a>
-        with
-        <svg class="h-5 w-5 text-red-600 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-        </svg>
-        by
-        <a class="border-b mb-1" href="https://nickjanetakis.com">Nick Janetakis</a>
-      </p>
-    </footer>
-  </body>
+  <main class="container mx-auto sm:w-10/12 lg:w-9/12 mb-8 z-0">
+    <%= yield %>
+  </main>
+
+  <style>
+  .dropdown:focus-within .dropdown-menu {
+    opacity:1;
+    transform: translate(0) scale(1);
+    visibility: visible;
+  }
+  </style>
+
+  <footer class="text-center mt-6 pb-6 h-10">
+    <p class="text-gray-500">
+      Copyright © xxxxxx All Rights Reserved.
+    </p>
+  </footer>
+</body>
 </html>
