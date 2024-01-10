@@ -38,6 +38,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :stock) # ストロングパラメータ
+    params.require(:product).permit(:name, :description, :price, :stock, :image) # ストロングパラメータ
   end
 end
