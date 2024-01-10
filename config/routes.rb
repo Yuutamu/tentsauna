@@ -13,6 +13,12 @@ Rails.application.routes.draw do
 
   scope module: :customer do
     resources :products, only: %i[index show]
+    resources :cart_items, only: %i[index create destroy] do
+      member do # cart_item の id が含まれる URL を作成
+        patch 'increase'
+        patch 'decrease'
+      end
+    end
   end
 
   get '/up/', to: 'up#index', as: :up
