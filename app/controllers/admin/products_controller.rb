@@ -1,6 +1,6 @@
 class Admin::ProductsController < ApplicationController
   before_action :authenticate_admin!
-  before_action :set_product, only: $i[show edit update]
+  before_action :set_product, only: %i[show edit update]
 
   def index
     @products = Product.all
