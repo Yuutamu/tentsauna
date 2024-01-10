@@ -14,4 +14,6 @@ class Customer < ApplicationRecord
     withdrawn: 1, # 退会済み
     banned: 2     # アカウント停止（運営判断による）
   }
+
+  has_meny :cart_items, dependent: :destroy
 end
