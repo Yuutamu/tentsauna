@@ -15,5 +15,5 @@ class Customer < ApplicationRecord
     banned: 2     # アカウント停止（運営判断による）
   }
 
-  has_meny :cart_items, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
 end
