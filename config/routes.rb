@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :customer do
-    resources: :products, only: %i[index show]
+    resources :products, only: %i[index show]
   end
 
   get '/up/', to: 'up#index', as: :up
