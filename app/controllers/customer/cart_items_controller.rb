@@ -40,7 +40,7 @@ class Customer::CartItemsController < ApplicationController
     if cart_item
       cart_item.increment!(:quantity, 1)
     else
-      current_customer.cart_item.build(product_id:).save # メモ：createにしないことでdebugしやすくさせる
+      current_customer.cart_items.build(product_id:).save # メモ：createにしないことでdebugしやすくさせる
     end
   end
 
