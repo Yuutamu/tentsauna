@@ -19,7 +19,7 @@ class Customer < ApplicationRecord
   has_many :orders, dependent: :destroy
 
   # メモ：オブジェクトのプロパティは、Stripe 側で指定されている
-  def line_items_checkouts
+  def line_items_checkout
     cart_items.map do |cart_item|
       {
         quantity: cart_item.quantity,
