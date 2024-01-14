@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         patch 'decrease'
       end
     end
+    resources :checkouts, only: [:create] # Stripe | createアクションのみ
   end
 
   get '/up/', to: 'up#index', as: :up
