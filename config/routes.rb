@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       end
     end
     resources :checkouts, only: [:create] # Stripe | createアクションのみ
+    resources :webhooks, only: [:create] # Stripe | createアクションのみ
   end
 
   get '/up/', to: 'up#index', as: :up
