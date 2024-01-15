@@ -26,3 +26,11 @@ Style/Documentation:
 Metrics/BlockLength:
   Exclude:
     - "config/routes.rb"
+
+# メソッドの行数40行まで許容
+Metrics/MethodLength:
+  Max: 40
+
+# メソッドの複雑度の指標を40まで許容
+Metrics/AbcSize:
+  Max: 40
