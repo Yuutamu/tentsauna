@@ -61,7 +61,7 @@ class Customer::WebhooksController < ApplicationController
       address2: session.shipping_details.address.line2,
       postage: session.shipping_options[0].shipping_amount,
       billing_amount: session.amount_total,
-      status: 'confirm_payment' # 'メモ：checkout.session.completed' イベントを受信した時点で、決済は完了しているのでステータスを「入金済み」へ
+      status: 'confirm_payment' # メモ：'checkout.session.completed' イベントを受信した時点で、決済は完了しているのでステータスを「入金済み」へ
     })
   end
 
