@@ -1,7 +1,7 @@
 # Stripe公式 エンドポイントのサンプル：https://dashboard.stripe.com/webhooks/create?endpoint_location=local
 
 class Customer::WebhooksController < ApplicationController
-  skip_before_action :varify_authenticity_token
+  skip_before_action :verify_authenticity_token
 
   def create
     playload = request.body.read
@@ -41,9 +41,9 @@ class Customer::WebhooksController < ApplicationController
       ApplicationRecord.transaction do
         order = create_order(session) # session を元にOrder テーブルにデータ代入
         # メモ：expand に関して（Stripe公式：https://stripe.com/docs/expand）
-        session_with_expand = Stripe::Checkout::Session.retrive({ id: session.id, expand: ['line_items'] })
+        session_with_expand = Stripe::Checkout::Session.retrieve({ id: session.id, expand: ['line_items'] })
         session_with_expand.line_items.data.each do |line_item|
-          create_order_details(order, line_item) # retrive で取り出したline_item をOrder_details テーブルに代入
+          create_order_details(order, line_item) # retrieve で取り出したline_item をOrder_details テーブルに代入
         end
       end
       # トランザクション処理の終了
@@ -71,7 +71,7 @@ class Customer::WebhooksController < ApplicationController
   end
 
   def create_order_details(order, line_item)
-    product = Stripe::Product.retrive(line_item.price.product)
+    product = Stripe::Product.retrieve(line_item.price.product)
     purchased_product = Product.find(product.metadata.product_id) # メモ：Stripe の metadata はダッシュボードから確認可能
 
     raise ActiveRecord::RecordNotFound if purchased_product.nil? # メモ：意図的に例外エラーを発生させる
