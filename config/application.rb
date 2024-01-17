@@ -45,5 +45,7 @@ module Hello
       g.skip_routes true # config/routes.rb へのルート追加をスキップ
       g.test_framework false # テストの作成をスキップ
     end
+
+    config.time_zone = 'Tokyo' # タイムゾーン 日本時間
   end
 end
