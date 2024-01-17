@@ -1,0 +1,6 @@
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d"
+      short: "%m/%d"
+      time: "%Y年 %m/%d %H:%M"

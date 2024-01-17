@@ -47,5 +47,7 @@ module Hello
     end
 
     config.time_zone = 'Tokyo' # タイムゾーン 日本時間
+
+    config.i18n.default_locale = :ja # 日本語設定
   end
 end
