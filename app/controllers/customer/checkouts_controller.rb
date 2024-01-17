@@ -35,7 +35,7 @@ class Customer::CheckoutsController < ApplicationController
           }
         }
       ],
-      success_url: root_url, # サンクスページ
+      success_url: "#{root_url}orders/success", # サンクスページ
       cancel_url: "#{root_url}cart_items" # 決済キャンセル時
     )
   end
