@@ -8,4 +8,10 @@ class Order < ApplicationRecord
     deliverd: 4         # 配達済み
   }
   has_many :order_details, dependent: :destroy
+
+  scope :waiting_payment, -> {where(status: 'waiting_payment') }
+  scope :confirm_payment, -> {where(status: 'confirm_payment') }
+  scope :shipped, -> {where(status: 'shipped') }
+  scope :out_of_deliverly, -> {where(status: 'out_of_deliverly') }
+  scope :delivered, -> {where(status: 'delivered') }
 end
