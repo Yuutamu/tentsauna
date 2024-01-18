@@ -1,4 +1,4 @@
-class Admin::OrdersController < ApplicationController
+class Admin::PagesController < ApplicationController
   before_action :authenticate_admin!
 
   def home
@@ -19,15 +19,15 @@ class Admin::OrdersController < ApplicationController
   def get_by_enum_value(status)
     case status
     when 'waiting_payment'
-      [Order.latest.waiting_payment, '入金待ち']
+      [Order.latest.waiting_payment, 'waiting_payment']
     when 'confirm_payment'
-      [Order.latest.confirm_payment, '入金済み']
+      [Order.latest.confirm_payment, 'confirm_payment']
     when 'shipped'
-      [Order.latest.shipped, '配送会社依頼済み']
+      [Order.latest.shipped, 'shipped']
     when 'out_of_delivery'
-      [Order.latest.out_of_delivery, '配送中']
-    when 'deliverd'
-      [Order.latest.deliverd, '配送済み']
+      [Order.latest.out_of_delivery, 'out_of_delivery']
+    when 'delivered'
+      [Order.latest.delivered, 'delivered']
     end
   end
 
@@ -35,7 +35,7 @@ class Admin::OrdersController < ApplicationController
     orders.count
   end
 
-  def total_sales
+  def total_sales(orders)
     orders.sum(:billing_amount)
   end
 end
