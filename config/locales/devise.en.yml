@@ -1,6 +1,5 @@
 # Additional translations at https://github.com/heartcombo/devise/wiki/I18n
 
-# TODO：日本語に変更するために修正必要
 en:
   devise:
     confirmations:
