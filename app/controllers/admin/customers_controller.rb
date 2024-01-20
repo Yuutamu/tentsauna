@@ -6,7 +6,7 @@ class Admin::CustomersController < ApplicationController
     @customers = Customer.latest
   end
 
-  def show;end
+  def show; end
 
   def update
     @customer.update(customer_params)
