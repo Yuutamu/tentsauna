@@ -12,7 +12,10 @@ class Admin::PagesController < ApplicationController
 
   def get_orders(params)
     # １＋N 問題の解消(親テーブル:Customer を読み込むことになるので)
-    return [Order.eager_load(:customer).latest, 'all'] if !params[:status].present? || !Order.statuses.keys.to_a.include?(params[:status])
+    if !params[:status].present? || !Order.statuses.keys.to_a.include?(params[:status])
+      return [Order.eager_load(:customer).latest,
+              'all']
+    end
 
     get_by_enum_value(params[:status])
   end

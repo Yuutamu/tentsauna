@@ -3,7 +3,8 @@ class Admin::CustomersController < ApplicationController
   before_action :set_customer, only: %i[show update]
 
   def index
-    @customers = Customer.latest
+    # 1+N問題の解消(子テーブル：Order を事前読み込み)
+    @customers = Customer.preload(:orders).latest
   end
 
   def show; end
