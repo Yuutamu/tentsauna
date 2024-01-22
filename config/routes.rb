@@ -21,19 +21,24 @@ Rails.application.routes.draw do
         patch 'increase'
         patch 'decrease'
       end
+    end
 
-    # 顧客退会機能
+    # Stripe
+    resources :checkouts, only: [:create] # Stripe | createアクションのみ
+    resources :webhooks, only: [:create] # Stripe | createアクションのみ
+
+    # success
+    resources :orders, only: %i[index show] do
+      collection do
+        get 'success'
+      end
+    end
+
+    # 退会
     resources :customers do
       collection do
         get 'confirm_withdraw'
         patch 'withdraw'
-      end
-    end
-    resources :checkouts, only: [:create] # Stripe | createアクションのみ
-    resources :webhooks, only: [:create] # Stripe | createアクションのみ
-    resources :orders, only: %i[index show] do
-      collection do
-        get 'success'
       end
     end
   end
