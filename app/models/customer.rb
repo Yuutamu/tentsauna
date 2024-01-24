@@ -39,6 +39,6 @@ class Customer < ApplicationRecord
 
   # メモ：devise.gem active_for_authentication? を上書き
   def active_for_authentication?
-    supar && (status == 'normal') # 顧客statusが通常時のみログイン許可
+    super && (status == 'normal') # 顧客statusが通常時のみログイン許可
   end
 end
