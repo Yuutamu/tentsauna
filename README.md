@@ -19,6 +19,7 @@ https://github.com/nickjj/docker-rails-example
 
 ### 決済機能
 - [Stripe](https://stripe.com/docs/api)
+stripe webhook を用いて決済ページを実装
 
 ### コード 品質管理
 - Rubocop
