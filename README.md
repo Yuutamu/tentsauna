@@ -26,6 +26,8 @@ https://github.com/nickjj/docker-rails-example
 
 ### 非同期処理
 - Sidekiq
+顧客への注文確認メールの送信を非同期にて処理しています。
+ちなみに、Sidekiq を採用している利用は、他よりも有名かつ、1個のプロセスで動作させられるのでメモリ使用量が少なく経済的なので。
 
 ### メール送信機能
 - Action Mailer
