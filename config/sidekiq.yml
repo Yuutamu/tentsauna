@@ -1,5 +1,6 @@
 ---
 
+# sidekiq.yml に関して (参考：https://tech-blog.tsukaby.com/archives/1519)
 :queues:
   - default
   - mailers
