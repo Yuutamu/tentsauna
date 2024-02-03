@@ -48,10 +48,13 @@ class Customer::WebhooksController < ApplicationController
       end
       # トランザクション処理の終了
 
-      customer.cart_items.destroy_all # customerのカートない商品を全て削除
+      # customerのカートない商品を全て削除
+      customer.cart_items.destroy_all
 
-      # TODO：注文確認メールの送信処理を実装する（参考：https://railsguides.jp/active_job_basics.html#action-mailer）
-      
+      # 注文確認メールの送信（参考：https://railsguides.jp/active_job_basics.html#action-mailer）
+      # Action Mailer の deliver_later メールを非同期処理
+      OrderMailer.complete(email: session.customer_details.email).deliver_later
+
       redirect_to session.success_url
     end
   end
