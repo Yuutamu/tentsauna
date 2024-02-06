@@ -35,7 +35,7 @@ class Customer::WebhooksController < ApplicationController
       return unless customer #メモ： 顧客が存在するか確認
 
       # トランザクション処理の開始
-      # (用いる理由：処理の１つで例外が発生した場合に、その処理を含んだ全ての処理を巻き戻すことができるのでrollback)
+      # (トランザクション使う理由：処理の１つで例外が発生した場合に、その処理を含んだ全ての処理を巻き戻すことができるのでrollback)
       ApplicationRecord.transaction do
         order = create_order(session) # メモ：session を元にOrder テーブルにデータ代入
         # expand に関して（Stripe公式：https://stripe.com/docs/expand）
@@ -84,6 +84,6 @@ class Customer::WebhooksController < ApplicationController
                                                  price: line_item.price.unit_amount,
                                                  quantity: line_item.quantity
                                                })
-    purchased_product.update!(stock: (purchased_product.stock - order_detail.quantity)) # 購入商品の在庫数更新
+    purchased_product.update!(stock: (purchased_product.stock - order_detail.quantity)) # メモ：購入商品の在庫数更新
   end
 end
