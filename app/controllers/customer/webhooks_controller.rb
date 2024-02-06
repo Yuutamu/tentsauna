@@ -6,7 +6,7 @@ class Customer::WebhooksController < ApplicationController
   def create
     playload = request.body.read
     sig_header = request.env['HTTP_STRIPE_SIGNATURE']
-    endpoint_secret = Rails.application.credentials.dig(:stripe, :endpoint_secret) # Credentials から取得
+    endpoint_secret = Rails.application.credentials.dig(:stripe, :endpoint_secret) # メモ：Credentials から取得
     event = nil
 
     begin
@@ -16,14 +16,12 @@ class Customer::WebhooksController < ApplicationController
 
     # json を parse できなかったとき
     rescue JSON::ParserError => e
-      # Invalid payload
       p e
       status 400
       return
 
     # Stripe の署名が無効のとき
     rescue Stripe::SignatureVerificationError => e
-      # Invalid signature
       p e
       status 400
       return
@@ -31,25 +29,24 @@ class Customer::WebhooksController < ApplicationController
 
     # 参考（Stripe公式 Checkout で注文のフルフィルメントを実行する方法：https://stripe.com/docs/payments/checkout/fulfill-orders）
     case event.type
-    # checkout.session.completed イベントを受け取った ＝＝ Stripe による決済が正常に完了した
-    when 'checkout.session.completed'
-      session = event.data.object # session 取得
+    when 'checkout.session.completed' # メモ：checkout.session.completed イベントを受け取った ＝＝ Stripe による決済が正常に完了した
+      session = event.data.object # メモ：session 取得
       customer = Customer.find(session.client_reference_id)
-      return unless customer # 顧客が存在するか確認
+      return unless customer #メモ： 顧客が存在するか確認
 
-      # トランザクション処理の開始(用いる理由：処理の１つで例外が発生した場合に、その処理を含んだ全ての処理を巻き戻すことができるのでrollback)
+      # トランザクション処理の開始
+      # (用いる理由：処理の１つで例外が発生した場合に、その処理を含んだ全ての処理を巻き戻すことができるのでrollback)
       ApplicationRecord.transaction do
-        order = create_order(session) # session を元にOrder テーブルにデータ代入
-        # メモ：expand に関して（Stripe公式：https://stripe.com/docs/expand）
+        order = create_order(session) # メモ：session を元にOrder テーブルにデータ代入
+        # expand に関して（Stripe公式：https://stripe.com/docs/expand）
         session_with_expand = Stripe::Checkout::Session.retrieve({ id: session.id, expand: ['line_items'] })
         session_with_expand.line_items.data.each do |line_item|
-          create_order_details(order, line_item) # retrieve で取り出したline_item をOrder_details テーブルに代入
+          create_order_details(order, line_item) # メモ：retrieve で取り出したline_item をOrder_details テーブルに代入
         end
       end
       # トランザクション処理の終了
 
-      # customerのカートない商品を全て削除
-      customer.cart_items.destroy_all
+      customer.cart_items.destroy_all # メモ：customerのカート商品を全て削除
 
       # 注文確認メールの送信（参考：https://railsguides.jp/active_job_basics.html#action-mailer）
       # Action Mailer の deliver_later メールを非同期処理
@@ -61,7 +58,7 @@ class Customer::WebhooksController < ApplicationController
 
   private
 
-  # 参考（Stripe Session Object 一覧：https://stripe.com/docs/api/checkout/sessions/object）
+  # Stripe Session Object 一覧（参考：https://stripe.com/docs/api/checkout/sessions/object）
   def create_order(session)
     Order.create!({
                     customer_id: session.client_reference_id,
