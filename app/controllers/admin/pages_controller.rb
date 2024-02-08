@@ -3,7 +3,7 @@ class Admin::PagesController < ApplicationController
 
   def home
     @orders, @selected = get_orders(params)
-    today_orders = Order.created_today # created_today
+    today_orders = Order.created_today # MEMO:created_today
     @today_total_orders = total_orders(today_orders)
     @today_total_sales = total_sales(today_orders)
   end

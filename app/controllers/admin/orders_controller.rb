@@ -5,7 +5,7 @@ class Admin::OrdersController < ApplicationController
   def show; end
 
   def update
-    @order.update(order_params) # ストロングパラメータ
+    @order.update(order_params) # MEMO:ストロングパラメータ
     redirect_to admin_order_path(@order), notice: '注文ステータスを更新更新しました。'
   end
 
@@ -16,6 +16,6 @@ class Admin::OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:status) # 許可するパラメータはstatus のみ
+    params.require(:order).permit(:status) # MEMO:許可するパラメータはstatus のみ
   end
 end

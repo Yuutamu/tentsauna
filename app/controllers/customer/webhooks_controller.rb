@@ -32,7 +32,7 @@ class Customer::WebhooksController < ApplicationController
     when 'checkout.session.completed' # MEMO：checkout.session.completed イベントを受け取った ＝＝ Stripe による決済が正常に完了した
       session = event.data.object # MEMO：session 取得
       customer = Customer.find(session.client_reference_id)
-      return unless customer #MEMO： 顧客が存在するか確認、早期リターン
+      return unless customer # MEMO： 顧客が存在するか確認、早期リターン
 
       # トランザクション処理の開始
       # (トランザクション使う理由：処理の１つで例外が発生した場合に、その処理を含んだ全ての処理を巻き戻すことができるのでrollback)
