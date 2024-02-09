@@ -1,6 +1,6 @@
-<%# lang=eng に据え置き %>
+<%# lang=ja に変更 %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <title>TentSauna</title>
 
@@ -139,10 +139,10 @@
             <%# どちらもログインしていない場合 %>
             <% else %>
               <li class='px-4 text-white no-underline hover:text-gray-600'>
-                <%= link_to "Sign Up", new_customer_registration_path %>
+                <%= link_to "ログイン", new_customer_registration_path %>
               </li>
               <li class='px-4 text-white no-underline hover:text-gray-600'>
-                <%= link_to "Sign In", new_customer_session_path %>
+                <%= link_to "新規会員登録", new_customer_session_path %>
               </li>
             <% end %>
           </ul>
