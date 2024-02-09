@@ -23,10 +23,12 @@
     <meta name="theme-color" content="#ffffff">
   </head>
 
-  <body class="flex flex-col h-screen justify-between">
+
+<%# MEMO: 以下のヘッダーからフロント実装始める %>
+  <body class="flex flex-col h-screen justify-between"><%# MEMO:h-screen削除 参考: https://zenn.dev/yohei_watanabe/books/c0b573713734b9/viewer/cfd413%>
     <div class='bg-[#CBBEA6] mb-8 z-10'>
       <div class='container mx-auto flex max-w-4xl items-center px-2 py-5'>
-        <div class='mx-auto flex w-full flex-wrap items-center'>
+        <div class='mx-auto flex w-full flex-wrap items-center'><%# MEMO: flex-wrap 削除すれば下への回り込みなくなる%>
           <div class='flex w-full justify-center font-extrabold text-white lg:w-1/2 lg:justify-start'>
             <%= link_to root_path, class: "text-2xl text-white no-underline hover:text-gray-600 hover:no-underline" do %>
               <span class='text-white hover:text-gray-600'>◎  Sauna Leaves</span>
