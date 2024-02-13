@@ -100,8 +100,7 @@
                     </svg>
                     <span class="absolute top-0 right-0">
                       <div class="inline-flex items-center px-1.5 py-0.4 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-400 text-white">
-                        <%# コメントアウト1/11 %>
-                        <%#= total_quantity(current_customer.cart_items) %>
+                        <%= total_quantity(current_customer.cart_items) %>
                       </div>
                     </span>
                   <% end %>
@@ -141,10 +140,10 @@
               <%# どちらもログインしていない場合 %>
               <% else %>
                 <li class='px-4 text-white no-underline hover:text-gray-600'>
-                  <%= link_to "ログイン", new_customer_registration_path %>
+                  <%= link_to "ログイン", new_customer_session_path %>
                 </li>
                 <li class='px-4 text-white no-underline hover:text-gray-600'>
-                  <%= link_to "新規会員登録", new_customer_session_path %>
+                  <%= link_to "新規会員登録", new_customer_registration_path  %>
                 </li>
               <% end %>
             </ul>
