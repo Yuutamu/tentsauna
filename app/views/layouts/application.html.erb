@@ -66,7 +66,8 @@
           <!-- logo - end -->
 
           <!-- nav - start -->
-            <nav class="hidden gap-12 lg:flex">
+            <nav class="gap-12 flex">
+
               <%# 管理者がログインしてる場合 %>
               <% if admin_signed_in? %>
                 <li class="text-gray-600 px-4 no-underline">
@@ -134,36 +135,36 @@
                   <% end %>
                 </div>
 
-                <%# 顧客 アイコン %>
-                    <div class="relative dropdown">
-                      <button class="text-sm font-medium text-gray-700 transition duration-150 ease-in-out  rounded-md" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="black" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
-                        <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
-                        </svg>
-                      </button>
-                      <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
-                        <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
-                          <div class="px-4 py-3">         
-                            <p class="text-sm leading-5">Signed in as</p>
-                            <p class="text-sm font-medium leading-5 text-gray-900 truncate"><%= current_customer.email %></p>
-                          </div>
-                          <div class="py-1">
-                            <%= link_to edit_customer_registration_path, class: "text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
-                              Account settings
-                            <% end %>
-                            <%= link_to orders_path, class: "text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
-                              Order Histories
-                            <% end %>
-                          </div>
-                          <div class="py-1">
-                            <%= link_to destroy_customer_session_path, data: { turbo_method: :delete }, class: "text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
-                              Sign out
-                            <% end %>
-                          </div>
-                        </div>
-                      </div>
+                <%# 顧客 アイコン pt-6で無理やり高さ調整(PC画面) %>
+                <div class="relative dropdown">
+                  <button type="button" class="pt-6 border-2 border-transparent focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="black" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
+                      <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
+                    </svg>
+                  </button>
+                <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
+                  <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                    <div class="px-4 py-3">         
+                      <p class="text-sm leading-5">Signed in as</p>
+                      <p class="text-sm font-medium leading-5 text-gray-900 truncate"><%= current_customer.email %></p>
                     </div>
+                    <div class="py-1">
+                      <%= link_to edit_customer_registration_path, class: "text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                        Account settings
+                      <% end %>
+                      <%= link_to orders_path, class: "text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                        Order Histories
+                      <% end %>
+                    </div>
+                    <div class="py-1">
+                      <%= link_to destroy_customer_session_path, data: { turbo_method: :delete }, class: "text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                        Sign out
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
 
+            
               <%# どちらもログインしていない場合 %>
               <% else %>
                 <li class='px-4 text-gray-600 no-underline hover:text-gray-600'>
