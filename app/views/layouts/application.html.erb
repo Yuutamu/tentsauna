@@ -66,29 +66,30 @@
           <!-- logo - end -->
 
           <!-- nav - start (hidden lg:flex を一旦削除。まずはPC画面で作る)-->
+          <!-- MEMO: if 使っているので、gap-12 flex が当たっているか確認しづらいので、playrand等で確認予定 -->
             <nav class="gap-12 flex">
 
               <%# 管理者がログインしてる場合 %>
               <% if admin_signed_in? %>
-                <li class="text-gray-600 px-4 no-underline">
+                <div class="text-gray-600 px-4 no-underline">
                   <%= link_to admin_root_path do%>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="[#4B5049]" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
                       <path d="M560-440q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM280-320q-33 0-56.5-23.5T200-400v-320q0-33 23.5-56.5T280-800h560q33 0 56.5 23.5T920-720v320q0 33-23.5 56.5T840-320H280Zm80-80h400q0-33 23.5-56.5T840-480v-160q-33 0-56.5-23.5T760-720H360q0 33-23.5 56.5T280-640v160q33 0 56.5 23.5T360-400Zm440 240H120q-33 0-56.5-23.5T40-240v-440h80v440h680v80ZM280-400v-320 320Z"/>
                     </svg>
                   <% end %>
-                </li>
-                <li class='px-4 text-gray-600 no-underline'>
+                </div>
+                <div class='px-4 text-gray-600 no-underline'>
                   <%= link_to admin_products_path do %>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="white" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="[#4B5049]" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
                     <path d="M200-120q-17 0-28.5-11.5T160-160v-40q-50 0-85-35t-35-85v-200q0-50 35-85t85-35v-80q0-50 35-85t85-35h400q50 0 85 35t35 85v80q50 0 85 35t35 85v200q0 50-35 85t-85 35v40q0 17-11.5 28.5T760-120q-17 0-28.5-11.5T720-160v-40H240v40q0 17-11.5 28.5T200-120Zm-40-160h640q17 0 28.5-11.5T840-320v-200q0-17-11.5-28.5T800-560q-17 0-28.5 11.5T760-520v160H200v-160q0-17-11.5-28.5T160-560q-17 0-28.5 11.5T120-520v200q0 17 11.5 28.5T160-280Zm120-160h400v-80q0-27 11-49t29-39v-112q0-17-11.5-28.5T680-760H280q-17 0-28.5 11.5T240-720v112q18 17 29 39t11 49v80Zm200 0Zm0 160Zm0-80Z"/>
                   </svg>
                   <% end %>
-                </li>
-                <li class='no-underline'>
+                </div>
+                <div class='no-underline'>
                   <div class="flex items-center justify-center">
                     <div class="relative inline-block text-left dropdown">
                       <button class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out  rounded-md" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="white" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="[#4B5049]" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
                           <path d="M40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm720 0v-120q0-44-24.5-84.5T666-434q51 6 96 20.5t84 35.5q36 20 55 44.5t19 53.5v120H760ZM360-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm400-160q0 66-47 113t-113 47q-11 0-28-2.5t-28-5.5q27-32 41.5-71t14.5-81q0-42-14.5-81T544-792q14-5 28-6.5t28-1.5q66 0 113 47t47 113ZM120-240h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T440-640q0-33-23.5-56.5T360-720q-33 0-56.5 23.5T280-640q0 33 23.5 56.5T360-560Zm0 320Zm0-400Z"/>
                         </svg>
                       </button>
@@ -107,7 +108,7 @@
                       </div>
                     </div>
                   </div>
-                </li>
+                </div>
 
 <%# TODO:cart-icon 商品カウント数を右上に調整する %>
               <%# 顧客がログインしている場合 %>
