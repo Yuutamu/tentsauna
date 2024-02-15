@@ -1,14 +1,23 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
+  <div class="text-dark-green text-sm font-bold font-['Noto Sans JP'] hover:text-light-green">
+    <%= link_to "すでに会員登録がお済みの方はコチラから", new_session_path(resource_name) %><br />
+  </div>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+  <div class="text-dark-green text-sm font-bold font-['Noto Sans JP']">
+    <%= link_to "新規会員登録はこちら", new_registration_path(resource_name) %><br />
+  </div>
 <% end %>
 
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+<%# MEMO: パスワード忘れた場合の変更はDB観点から実装しない %>
+<%
+=begin%>
+ <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
   <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-<% end %>
+<% end %> 
+<%
+=end%>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
   <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
