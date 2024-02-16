@@ -28,8 +28,11 @@
 <%# TODO: hover時にアイコンを明るくさせる %>
   <body>
     <!-- hero - start -->
+    <!-- TODO:ヘッダーの調整終わったら、hero の調整しする。特にパッディング -->
     <div class="bg-white pb-6 sm:pb-8 lg:pb-12">
       <div class="mx-auto max-w-screen-2xl ">
+
+        <!-- header - start -->
         <header class="mb-4 flex items-center justify-between px-4 md:px-8 py-4 md:py-8">
 
           <!-- logo - start -->
@@ -126,7 +129,7 @@
                   </div>
                 </div>
 
-<%# TODO:cart-icon 商品カウント数を右上に調整する %>
+<%# TODO:%>
               <%# 顧客がログインしている場合 %>
               <% elsif customer_signed_in? %>
 
@@ -156,7 +159,7 @@
                 <%# ログインメニューアイコン pt-2で無理やり高さ調整(PC画面) %>
                 <div class="flex items-center justify-center pt-2">
                   <div class="relative inline-block text-left dropdown">
-                    <button class="inline-flex justify-center w-full px-4 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out  rounded-md" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                    <button class="inline-flex justify-center w-full px-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out  rounded-md" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
                       <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-dark-green hover:fill-gray-600">
                         <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
                       </svg>
