@@ -27,14 +27,13 @@
 <%# MEMO: 以下のヘッダーからフロント実装始める %>
 <%# TODO: hover時にアイコンを明るくさせる %>
 <%# TODO: sidekiq表示させてるのもあって、ヘッダーが高めに設定されているので、本番環境では調整すべき（本番環境と開発環境のUIを変えることができたら嬉しい） %>
+<!-- TODO:ヘッダーの調整終わったら、hero の調整しする。特にパッディング -->
+
   <body>
-    <!-- hero - start -->
-    <!-- TODO:ヘッダーの調整終わったら、hero の調整しする。特にパッディング -->
-    <div class="bg-white pb-6 sm:pb-8 lg:pb-12">
-      <div class="mx-auto max-w-screen-2xl ">
 
         <!-- header - start -->
-        <header class="mb-4 flex items-center justify-between px-4 md:px-8 py-4 md:py-8">
+        <%# MEMO:header高さ調整のため、Y軸のパッディングを削除 py-4 md:py-8%>
+        <header class="flex items-center justify-between px-4 md:px-8 bg-white">
 
           <!-- logo - start -->
           <!-- MEMO: lg表示の際にlogoをデフォルトの大きさにしても良いかも -->
@@ -73,197 +72,195 @@
 
           <!-- nav - start (hidden lg:flex を一旦削除。まずはPC画面で作る)-->
           <!-- MEMO: if 使っているので、gap-12 flex が当たっているか確認しづらいので、playrand等で確認予定 -->
-            <nav class="gap-12 flex">
+          <nav class="gap-12 flex">
 
-          <%# MEMO:管理者はPCでしかログインしないのでモバイル対応不要。全体のデザイン（アイコン→テキスト、背景色）を変更しても良いかも %>
-              <%# 管理者がログインしてる場合 pt-6で無理やり高さ調整(PC画面)%>
-              <% if admin_signed_in? %>
+        <%# MEMO:管理者はPCでしかログインしないのでモバイル対応不要。全体のデザイン（アイコン→テキスト、背景色）を変更しても良いかも %>
+            <%# 管理者がログインしてる場合 pt-6で無理やり高さ調整(PC画面)%>
+            <% if admin_signed_in? %>
+              
+              <%# Home アイコン %>
+              <div class="text-gray-600 px-4">
+                <%= link_to admin_root_path do%>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-dark-green hover:fill-gray-500">
+                    <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>
+                  </svg>
+                <% end %>
+              </div>
+
+              <%# Products アイコン %>
+              <div class='px-4 text-gray-600'>
+                <%= link_to admin_products_path do %>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-dark-green hover:fill-gray-600">
+                  <path d="M200-120q-17 0-28.5-11.5T160-160v-40q-50 0-85-35t-35-85v-200q0-50 35-85t85-35v-80q0-50 35-85t85-35h400q50 0 85 35t35 85v80q50 0 85 35t35 85v200q0 50-35 85t-85 35v40q0 17-11.5 28.5T760-120q-17 0-28.5-11.5T720-160v-40H240v40q0 17-11.5 28.5T200-120Zm-40-160h640q17 0 28.5-11.5T840-320v-200q0-17-11.5-28.5T800-560q-17 0-28.5 11.5T760-520v160H200v-160q0-17-11.5-28.5T160-560q-17 0-28.5 11.5T120-520v200q0 17 11.5 28.5T160-280Zm120-160h400v-80q0-27 11-49t29-39v-112q0-17-11.5-28.5T680-760H280q-17 0-28.5 11.5T240-720v112q18 17 29 39t11 49v80Zm200 0Zm0 160Zm0-80Z"/>
+                </svg>
+                <% end %>
+              </div>
+
+              <%# Customers アイコン %>
+              <div class='px-4 text-gray-600'>
+                <%= link_to admin_customers_path do %>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-dark-green hover:fill-gray-600">
+                  <path d="M40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm720 0v-120q0-44-24.5-84.5T666-434q51 6 96 20.5t84 35.5q36 20 55 44.5t19 53.5v120H760ZM360-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm400-160q0 66-47 113t-113 47q-11 0-28-2.5t-28-5.5q27-32 41.5-71t14.5-81q0-42-14.5-81T544-792q14-5 28-6.5t28-1.5q66 0 113 47t47 113ZM120-240h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T440-640q0-33-23.5-56.5T360-720q-33 0-56.5 23.5T280-640q0 33 23.5 56.5T360-560Zm0 320Zm0-400Z"/>
+                </svg>
                 
-                <%# Home アイコン %>
-                <div class="text-gray-600 px-4">
-                  <%= link_to admin_root_path do%>
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-dark-green hover:fill-gray-500">
-                      <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>
+                <% end %>
+              </div>
+
+              <%# ログインメニュー アイコン %>
+              <div class="flex items-center justify-center">
+                <div class="relative inline-block text-left dropdown">
+                  <button class="inline-flex justify-center w-full px-4 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out  rounded-md" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-dark-green hover:fill-gray-600">
+                      <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
                     </svg>
-                  <% end %>
-                </div>
-
-                <%# Products アイコン %>
-                <div class='px-4 text-gray-600'>
-                  <%= link_to admin_products_path do %>
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-dark-green hover:fill-gray-600">
-                    <path d="M200-120q-17 0-28.5-11.5T160-160v-40q-50 0-85-35t-35-85v-200q0-50 35-85t85-35v-80q0-50 35-85t85-35h400q50 0 85 35t35 85v80q50 0 85 35t35 85v200q0 50-35 85t-85 35v40q0 17-11.5 28.5T760-120q-17 0-28.5-11.5T720-160v-40H240v40q0 17-11.5 28.5T200-120Zm-40-160h640q17 0 28.5-11.5T840-320v-200q0-17-11.5-28.5T800-560q-17 0-28.5 11.5T760-520v160H200v-160q0-17-11.5-28.5T160-560q-17 0-28.5 11.5T120-520v200q0 17 11.5 28.5T160-280Zm120-160h400v-80q0-27 11-49t29-39v-112q0-17-11.5-28.5T680-760H280q-17 0-28.5 11.5T240-720v112q18 17 29 39t11 49v80Zm200 0Zm0 160Zm0-80Z"/>
-                  </svg>
-                  <% end %>
-                </div>
-
-                <%# Customers アイコン %>
-                <div class='px-4 text-gray-600'>
-                  <%= link_to admin_customers_path do %>
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-dark-green hover:fill-gray-600">
-                    <path d="M40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm720 0v-120q0-44-24.5-84.5T666-434q51 6 96 20.5t84 35.5q36 20 55 44.5t19 53.5v120H760ZM360-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm400-160q0 66-47 113t-113 47q-11 0-28-2.5t-28-5.5q27-32 41.5-71t14.5-81q0-42-14.5-81T544-792q14-5 28-6.5t28-1.5q66 0 113 47t47 113ZM120-240h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T440-640q0-33-23.5-56.5T360-720q-33 0-56.5 23.5T280-640q0 33 23.5 56.5T360-560Zm0 320Zm0-400Z"/>
-                  </svg>
-                  
-                  <% end %>
-                </div>
-
-                <%# ログインメニュー アイコン %>
-                <div class="flex items-center justify-center">
-                  <div class="relative inline-block text-left dropdown">
-                    <button class="inline-flex justify-center w-full px-4 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out  rounded-md" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
-                      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-dark-green hover:fill-gray-600">
-                        <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
-                      </svg>
-                    </button>
-                    <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
-                      <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
-                        <div class="px-4 py-3">         
-                          <p class="text-sm leading-5">Signed in as</p>
-                          <p class="text-sm font-medium leading-5 text-gray-900 truncate"><%= current_admin.email %></p>
-                        </div>
-                        <div class="py-1">
-                          <%= link_to destroy_admin_session_path, data: { turbo_method: :delete }, class: "text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
-                            Sign out
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              <%# 顧客がログインしている場合 %>
-              <% elsif customer_signed_in? %>
-
-                <%# Product アイコン mobile:hidden PC:pt-6 %>
-                <div class="hidden md:flex md:pt-6">
-                  <%= link_to products_path, class: "border-2 border-transparent focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out fill-dark-green" do %>
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
-                      <path d="M200-120q-17 0-28.5-11.5T160-160v-40q-50 0-85-35t-35-85v-200q0-50 35-85t85-35v-80q0-50 35-85t85-35h400q50 0 85 35t35 85v80q50 0 85 35t35 85v200q0 50-35 85t-85 35v40q0 17-11.5 28.5T760-120q-17 0-28.5-11.5T720-160v-40H240v40q0 17-11.5 28.5T200-120Zm-40-160h640q17 0 28.5-11.5T840-320v-200q0-17-11.5-28.5T800-560q-17 0-28.5 11.5T760-520v160H200v-160q0-17-11.5-28.5T160-560q-17 0-28.5 11.5T120-520v200q0 17 11.5 28.5T160-280Zm120-160h400v-80q0-27 11-49t29-39v-112q0-17-11.5-28.5T680-760H280q-17 0-28.5 11.5T240-720v112q18 17 29 39t11 49v80Zm200 0Zm0 160Zm0-80Z"/>
-                    </svg>
-                  <% end %>
-                </div>
-
-                <%# Cart_Items アイコン %>
-                <div class='text-gray-600'>
-                  <%= link_to cart_items_path, class: "relative border-2 border-transparent focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out fill-dark-green" do %>
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
-                      <path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/>
-                    </svg>
-                    <span class="absolute top-0 left-3">
-                      <div class="inline-flex items-center px-1.5 py-0.4 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-400 text-white">
-                        <%= total_quantity(current_customer.cart_items) %>
-                      </div>
-                    </span>
-                  <% end %>
-                </div>
-
-                <%# ログインメニューアイコン pt-2で無理やり高さ調整(PC画面) %>
-                <div class="flex items-center justify-center pt-2">
-                  <div class="relative inline-block text-left dropdown">
-                    <button class="inline-flex justify-center w-full px-2 text-sm font-medium leading-5 text-dark-green transition duration-150 ease-in-out  rounded-md" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
-                      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-dark-green hover:fill-gray-600">
-                        <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
-                      </svg>
-                    </button>
-                    <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
-                      <div class="absolute right-0 w-56 mt-2 origin-top-right bg-gray-100 border border-gray-200 divide-y divide-gray-200 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
-                        <div class="px-4 py-3">
-                          <p class="text-sm text-dark-green leading-5">Signed in as</p>
-                          <p class="text-sm font-medium leading-5 text-gray-900 truncate"><%= current_customer.email %></p>
-                        </div>
-                        <div class="py-1">
-                          <%= link_to edit_customer_registration_path, class: "text-dark-green flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
-                            Account settings
-                          <% end %>
-                        </div>
-                        <div class="py-1">
-                          <%= link_to orders_path, class: "text-dark-green flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
-                            Order Histories
-                          <% end %>
-                        </div>
-                        <div class="py-1">
-                          <%= link_to destroy_customer_session_path, data: { turbo_method: :delete }, class: "text-dark-green flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
-                            Sign out
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-
-              <%# どちらもログインしていない場合 %>
-              <% else %>
-                <div class="hidden lg:flex">
-                  <div class='w-[154px] h-[34px] px-[18px] pt-1 pb-[4px] mx-4 text-gray-600 no-underline hover:text-gray-600 bg-light-green rounded-3xl border border-[#669988] justify-center items-center gap-2 flex'>
-                    <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M8.83333 9.1613C9.71739 9.1613 10.5652 8.81011 11.1904 8.18498C11.8155 7.55986 12.1667 6.71202 12.1667 5.82796C12.1667 4.94391 11.8155 4.09606 11.1904 3.47094C10.5652 2.84582 9.71739 2.49463 8.83333 2.49463C7.94928 2.49463 7.10143 2.84582 6.47631 3.47094C5.85119 4.09606 5.5 4.94391 5.5 5.82796C5.5 6.71202 5.85119 7.55986 6.47631 8.18498C7.10143 8.81011 7.94928 9.1613 8.83333 9.1613ZM18 4.99463H17.1667V4.1613C17.1667 3.94028 17.0789 3.72832 16.9226 3.57204C16.7663 3.41576 16.5543 3.32796 16.3333 3.32796C16.1123 3.32796 15.9004 3.41576 15.7441 3.57204C15.5878 3.72832 15.5 3.94028 15.5 4.1613V4.99463H14.6667C14.4457 4.99463 14.2337 5.08243 14.0774 5.23871C13.9211 5.39499 13.8333 5.60695 13.8333 5.82796C13.8333 6.04898 13.9211 6.26094 14.0774 6.41722C14.2337 6.5735 14.4457 6.6613 14.6667 6.6613H15.5V7.49463C15.5 7.71564 15.5878 7.9276 15.7441 8.08388C15.9004 8.24016 16.1123 8.32796 16.3333 8.32796C16.5543 8.32796 16.7663 8.24016 16.9226 8.08388C17.0789 7.9276 17.1667 7.71564 17.1667 7.49463V6.6613H18C18.221 6.6613 18.433 6.5735 18.5893 6.41722C18.7455 6.26094 18.8333 6.04898 18.8333 5.82796C18.8333 5.60695 18.7455 5.39499 18.5893 5.23871C18.433 5.08243 18.221 4.99463 18 4.99463ZM14.6667 16.6613C14.6667 16.8823 14.5789 17.0943 14.4226 17.2506C14.2663 17.4068 14.0543 17.4946 13.8333 17.4946H3.83333C3.61232 17.4946 3.40036 17.4068 3.24408 17.2506C3.0878 17.0943 3 16.8823 3 16.6613C3 15.8953 3.15088 15.1367 3.44404 14.429C3.73719 13.7212 4.16687 13.0782 4.70854 12.5365C5.25022 11.9948 5.89328 11.5652 6.60101 11.272C7.30875 10.9788 8.06729 10.828 8.83333 10.828C9.59938 10.828 10.3579 10.9788 11.0657 11.272C11.7734 11.5652 12.4164 11.9948 12.9581 12.5365C13.4998 13.0782 13.9295 13.7212 14.2226 14.429C14.5158 15.1367 14.6667 15.8953 14.6667 16.6613Z" fill="white"/>
-                    </svg>
-                    <div class="text-white text-sm font-bold font-['Noto Sans JP'] leading-relaxed">
-                      <%= link_to "新規登録", new_customer_registration_path %>
-                    </div>
-                  </div>
-                  <div class='w-[154px] h-[34px] px-[18px] pt-1 pb-[4px] mx-4 text-gray-600 no-underline hover:text-gray-600 bg-white rounded-3xl border border-[#646B61] justify-center items-center gap-2 flex'>
-                    <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g clip-path="url(#clip0_108_543)">
-                      <g clip-path="url(#clip1_108_543)">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M14.6667 3.32812H16.3333C16.5543 3.32812 16.7663 3.41592 16.9226 3.5722C17.0789 3.72848 17.1667 3.94044 17.1667 4.16146V15.8281C17.1667 16.0491 17.0789 16.2611 16.9226 16.4174C16.7663 16.5737 16.5543 16.6615 16.3333 16.6615H14.6667C14.4457 16.6615 14.2337 16.5737 14.0774 16.4174C13.9211 16.2611 13.8333 16.0491 13.8333 15.8281C13.8333 15.6071 13.9211 15.3951 14.0774 15.2389C14.2337 15.0826 14.4457 14.9948 14.6667 14.9948H15.5V4.99479H14.6667C14.4457 4.99479 14.2337 4.90699 14.0774 4.75071C13.9211 4.59443 13.8333 4.38247 13.8333 4.16146C13.8333 3.94044 13.9211 3.72848 14.0774 3.5722C14.2337 3.41592 14.4457 3.32812 14.6667 3.32812ZM9.16667 5.99479C9.25421 5.92913 9.35384 5.88136 9.45985 5.8542C9.56586 5.82704 9.67618 5.82102 9.78452 5.8365C9.89285 5.85198 9.99708 5.88864 10.0912 5.9444C10.1854 6.00015 10.2677 6.07391 10.3333 6.16146L12.85 9.51146C12.9543 9.65418 13.0105 9.82636 13.0105 10.0031C13.0105 10.1799 12.9543 10.3521 12.85 10.4948L10.5 13.8281C10.3726 14.0078 10.1792 14.1297 9.9621 14.1671C9.74505 14.2046 9.52198 14.1546 9.34167 14.0281L9.33583 14.024C9.24675 13.9604 9.17106 13.8799 9.11308 13.787C9.05511 13.6942 9.01599 13.5909 8.99796 13.4829C8.97993 13.375 8.98334 13.2645 9.008 13.1579C9.03266 13.0513 9.07808 12.9505 9.14167 12.8615L10.575 10.8281H3.83333C3.61232 10.8281 3.40036 10.7403 3.24408 10.584C3.0878 10.4278 3 10.2158 3 9.99479C3 9.77378 3.0878 9.56182 3.24408 9.40554C3.40036 9.24926 3.61232 9.16146 3.83333 9.16146H10.5L9 7.16146C8.93434 7.07391 8.88657 6.97429 8.85941 6.86828C8.83225 6.76226 8.82623 6.65194 8.84171 6.54361C8.85719 6.43527 8.89385 6.33105 8.9496 6.23688C9.00536 6.14271 9.07912 6.06045 9.16667 5.99479Z" fill="#565956"/>
-                      </g>
-                      </g>
-                      <defs>
-                      <clipPath id="clip0_108_543">
-                      <rect width="20" height="20" fill="white" transform="translate(0.5 -0.00537109)"/>
-                      </clipPath>
-                      <clipPath id="clip1_108_543">
-                      <rect width="20" height="20" fill="white" transform="translate(0.5 -0.00537109)"/>
-                      </clipPath>
-                      </defs>
-                    </svg>
-                    <div class="text-[#646B61] text-sm font-bold font-['Noto Sans JP'] leading-relaxed">
-                      <%= link_to "ログイン", new_customer_session_path %>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- mobile buttons - start -->
-                <div class="relative dropdown">
-                  <button type="button" class="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-2.5 py-2 text-sm font-semibold text-gray-500 ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:hidden" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-light-green">
-                      <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
-                    </svg>
-                    Menu
                   </button>
                   <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
-                    <div class="absolute right-0 w-56 mt-2 origin-top-right bg-gray-100 border border-gray-200 divide-y divide-gray-300 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                    <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                      <div class="px-4 py-3">         
+                        <p class="text-sm leading-5">Signed in as</p>
+                        <p class="text-sm font-medium leading-5 text-gray-900 truncate"><%= current_admin.email %></p>
+                      </div>
                       <div class="py-1">
-                        <%= link_to new_customer_session_path, class: "text-dark-green font-['Noto Sans JP'] text-bold flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
-                          ログイン
+                        <%= link_to destroy_admin_session_path, data: { turbo_method: :delete }, class: "text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                          Sign out
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <%# 顧客がログインしている場合 %>
+            <% elsif customer_signed_in? %>
+
+              <%# Product アイコン mobile:hidden PC:pt-6 %>
+              <div class="hidden md:flex md:pt-6">
+                <%= link_to products_path, class: "border-2 border-transparent focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out fill-dark-green" do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
+                    <path d="M200-120q-17 0-28.5-11.5T160-160v-40q-50 0-85-35t-35-85v-200q0-50 35-85t85-35v-80q0-50 35-85t85-35h400q50 0 85 35t35 85v80q50 0 85 35t35 85v200q0 50-35 85t-85 35v40q0 17-11.5 28.5T760-120q-17 0-28.5-11.5T720-160v-40H240v40q0 17-11.5 28.5T200-120Zm-40-160h640q17 0 28.5-11.5T840-320v-200q0-17-11.5-28.5T800-560q-17 0-28.5 11.5T760-520v160H200v-160q0-17-11.5-28.5T160-560q-17 0-28.5 11.5T120-520v200q0 17 11.5 28.5T160-280Zm120-160h400v-80q0-27 11-49t29-39v-112q0-17-11.5-28.5T680-760H280q-17 0-28.5 11.5T240-720v112q18 17 29 39t11 49v80Zm200 0Zm0 160Zm0-80Z"/>
+                  </svg>
+                <% end %>
+              </div>
+
+              <%# Cart_Items アイコン %>
+              <div class='text-gray-600'>
+                <%= link_to cart_items_path, class: "relative border-2 border-transparent focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out fill-dark-green" do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="hover:fill-gray-600">
+                    <path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/>
+                  </svg>
+                  <span class="absolute top-0 left-3">
+                    <div class="inline-flex items-center px-1.5 py-0.4 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-400 text-white">
+                      <%= total_quantity(current_customer.cart_items) %>
+                    </div>
+                  </span>
+                <% end %>
+              </div>
+
+              <%# ログインメニューアイコン pt-2で無理やり高さ調整(PC画面) %>
+              <div class="flex items-center justify-center pt-2">
+                <div class="relative inline-block text-left dropdown">
+                  <button class="inline-flex justify-center w-full px-2 text-sm font-medium leading-5 text-dark-green transition duration-150 ease-in-out  rounded-md" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-dark-green hover:fill-gray-600">
+                      <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
+                    </svg>
+                  </button>
+                  <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
+                    <div class="absolute right-0 w-56 mt-2 origin-top-right bg-gray-100 border border-gray-200 divide-y divide-gray-200 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                      <div class="px-4 py-3">
+                        <p class="text-sm text-dark-green leading-5">Signed in as</p>
+                        <p class="text-sm font-medium leading-5 text-gray-900 truncate"><%= current_customer.email %></p>
+                      </div>
+                      <div class="py-1">
+                        <%= link_to edit_customer_registration_path, class: "text-dark-green flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                          Account settings
                         <% end %>
                       </div>
                       <div class="py-1">
-                        <%= link_to new_customer_registration_path, class: "text-dark-green font-['Noto Sans JP'] text-bold flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
-                          新規会員登録
+                        <%= link_to orders_path, class: "text-dark-green flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                          Order Histories
                         <% end %>
                       </div>
                       <div class="py-1">
-                        <%= link_to products_path, class: "text-dark-green font-['Noto Sans JP'] text-bold flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
-                          商品一覧
+                        <%= link_to destroy_customer_session_path, data: { turbo_method: :delete }, class: "text-dark-green flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                          Sign out
                         <% end %>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <!-- mobile buttons - end -->
-              <% end %>
 
-            </nav>
-          <!-- nav - end -->
+            <%# どちらもログインしていない場合 %>
+            <% else %>
+              <div class="hidden lg:flex">
+                <div class='w-[154px] h-[34px] px-[18px] pt-1 pb-[4px] mx-4 text-gray-600 no-underline hover:text-gray-600 bg-light-green rounded-3xl border border-[#669988] justify-center items-center gap-2 flex'>
+                  <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.83333 9.1613C9.71739 9.1613 10.5652 8.81011 11.1904 8.18498C11.8155 7.55986 12.1667 6.71202 12.1667 5.82796C12.1667 4.94391 11.8155 4.09606 11.1904 3.47094C10.5652 2.84582 9.71739 2.49463 8.83333 2.49463C7.94928 2.49463 7.10143 2.84582 6.47631 3.47094C5.85119 4.09606 5.5 4.94391 5.5 5.82796C5.5 6.71202 5.85119 7.55986 6.47631 8.18498C7.10143 8.81011 7.94928 9.1613 8.83333 9.1613ZM18 4.99463H17.1667V4.1613C17.1667 3.94028 17.0789 3.72832 16.9226 3.57204C16.7663 3.41576 16.5543 3.32796 16.3333 3.32796C16.1123 3.32796 15.9004 3.41576 15.7441 3.57204C15.5878 3.72832 15.5 3.94028 15.5 4.1613V4.99463H14.6667C14.4457 4.99463 14.2337 5.08243 14.0774 5.23871C13.9211 5.39499 13.8333 5.60695 13.8333 5.82796C13.8333 6.04898 13.9211 6.26094 14.0774 6.41722C14.2337 6.5735 14.4457 6.6613 14.6667 6.6613H15.5V7.49463C15.5 7.71564 15.5878 7.9276 15.7441 8.08388C15.9004 8.24016 16.1123 8.32796 16.3333 8.32796C16.5543 8.32796 16.7663 8.24016 16.9226 8.08388C17.0789 7.9276 17.1667 7.71564 17.1667 7.49463V6.6613H18C18.221 6.6613 18.433 6.5735 18.5893 6.41722C18.7455 6.26094 18.8333 6.04898 18.8333 5.82796C18.8333 5.60695 18.7455 5.39499 18.5893 5.23871C18.433 5.08243 18.221 4.99463 18 4.99463ZM14.6667 16.6613C14.6667 16.8823 14.5789 17.0943 14.4226 17.2506C14.2663 17.4068 14.0543 17.4946 13.8333 17.4946H3.83333C3.61232 17.4946 3.40036 17.4068 3.24408 17.2506C3.0878 17.0943 3 16.8823 3 16.6613C3 15.8953 3.15088 15.1367 3.44404 14.429C3.73719 13.7212 4.16687 13.0782 4.70854 12.5365C5.25022 11.9948 5.89328 11.5652 6.60101 11.272C7.30875 10.9788 8.06729 10.828 8.83333 10.828C9.59938 10.828 10.3579 10.9788 11.0657 11.272C11.7734 11.5652 12.4164 11.9948 12.9581 12.5365C13.4998 13.0782 13.9295 13.7212 14.2226 14.429C14.5158 15.1367 14.6667 15.8953 14.6667 16.6613Z" fill="white"/>
+                  </svg>
+                  <div class="text-white text-sm font-bold font-['Noto Sans JP'] leading-relaxed">
+                    <%= link_to "新規登録", new_customer_registration_path %>
+                  </div>
+                </div>
+                <div class='w-[154px] h-[34px] px-[18px] pt-1 pb-[4px] mx-4 text-gray-600 no-underline hover:text-gray-600 bg-white rounded-3xl border border-[#646B61] justify-center items-center gap-2 flex'>
+                  <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_108_543)">
+                    <g clip-path="url(#clip1_108_543)">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.6667 3.32812H16.3333C16.5543 3.32812 16.7663 3.41592 16.9226 3.5722C17.0789 3.72848 17.1667 3.94044 17.1667 4.16146V15.8281C17.1667 16.0491 17.0789 16.2611 16.9226 16.4174C16.7663 16.5737 16.5543 16.6615 16.3333 16.6615H14.6667C14.4457 16.6615 14.2337 16.5737 14.0774 16.4174C13.9211 16.2611 13.8333 16.0491 13.8333 15.8281C13.8333 15.6071 13.9211 15.3951 14.0774 15.2389C14.2337 15.0826 14.4457 14.9948 14.6667 14.9948H15.5V4.99479H14.6667C14.4457 4.99479 14.2337 4.90699 14.0774 4.75071C13.9211 4.59443 13.8333 4.38247 13.8333 4.16146C13.8333 3.94044 13.9211 3.72848 14.0774 3.5722C14.2337 3.41592 14.4457 3.32812 14.6667 3.32812ZM9.16667 5.99479C9.25421 5.92913 9.35384 5.88136 9.45985 5.8542C9.56586 5.82704 9.67618 5.82102 9.78452 5.8365C9.89285 5.85198 9.99708 5.88864 10.0912 5.9444C10.1854 6.00015 10.2677 6.07391 10.3333 6.16146L12.85 9.51146C12.9543 9.65418 13.0105 9.82636 13.0105 10.0031C13.0105 10.1799 12.9543 10.3521 12.85 10.4948L10.5 13.8281C10.3726 14.0078 10.1792 14.1297 9.9621 14.1671C9.74505 14.2046 9.52198 14.1546 9.34167 14.0281L9.33583 14.024C9.24675 13.9604 9.17106 13.8799 9.11308 13.787C9.05511 13.6942 9.01599 13.5909 8.99796 13.4829C8.97993 13.375 8.98334 13.2645 9.008 13.1579C9.03266 13.0513 9.07808 12.9505 9.14167 12.8615L10.575 10.8281H3.83333C3.61232 10.8281 3.40036 10.7403 3.24408 10.584C3.0878 10.4278 3 10.2158 3 9.99479C3 9.77378 3.0878 9.56182 3.24408 9.40554C3.40036 9.24926 3.61232 9.16146 3.83333 9.16146H10.5L9 7.16146C8.93434 7.07391 8.88657 6.97429 8.85941 6.86828C8.83225 6.76226 8.82623 6.65194 8.84171 6.54361C8.85719 6.43527 8.89385 6.33105 8.9496 6.23688C9.00536 6.14271 9.07912 6.06045 9.16667 5.99479Z" fill="#565956"/>
+                    </g>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_108_543">
+                    <rect width="20" height="20" fill="white" transform="translate(0.5 -0.00537109)"/>
+                    </clipPath>
+                    <clipPath id="clip1_108_543">
+                    <rect width="20" height="20" fill="white" transform="translate(0.5 -0.00537109)"/>
+                    </clipPath>
+                    </defs>
+                  </svg>
+                  <div class="text-[#646B61] text-sm font-bold font-['Noto Sans JP'] leading-relaxed">
+                    <%= link_to "ログイン", new_customer_session_path %>
+                  </div>
+                </div>
+              </div>
+
+              <!-- mobile buttons - start -->
+              <div class="relative dropdown">
+                <button type="button" class="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-2.5 py-2 text-sm font-semibold text-gray-500 ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:hidden" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-light-green">
+                    <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+                  </svg>
+                  Menu
+                </button>
+                <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
+                  <div class="absolute right-0 w-56 mt-2 origin-top-right bg-gray-100 border border-gray-200 divide-y divide-gray-300 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                    <div class="py-1">
+                      <%= link_to new_customer_session_path, class: "text-dark-green font-['Noto Sans JP'] text-bold flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                        ログイン
+                      <% end %>
+                    </div>
+                    <div class="py-1">
+                      <%= link_to new_customer_registration_path, class: "text-dark-green font-['Noto Sans JP'] text-bold flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                        新規会員登録
+                      <% end %>
+                    </div>
+                    <div class="py-1">
+                      <%= link_to products_path, class: "text-dark-green font-['Noto Sans JP'] text-bold flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                        商品一覧
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- mobile buttons - end -->
+            <% end %>
+
+          </nav>
+        <!-- nav - end -->
 
         </header>
-      </div>
     
   
-    <!-- hero - end -->
 
     <% if flash[:notice] %>
       <div class="p-4 mb-4 text-md text-blue-700 text-center font-bold">
