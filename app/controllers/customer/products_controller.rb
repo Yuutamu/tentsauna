@@ -8,7 +8,6 @@ class Customer::ProductsController < ApplicationController
     @cart_item = CartItem.new
   end
 
-  # TODO : private 必要性確認
   private
 
   def get_products(params)
