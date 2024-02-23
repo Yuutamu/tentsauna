@@ -25,9 +25,9 @@
           <div class="flex">
             <div>
               <% if @product.stock > 0 %>
-                <span class="bg-blue-100 text-blue-800 text-sm font-semibold p-2.5 rounded">In stock (<%= @product.stock %>)</span>
+                <span class="bg-blue-100 text-blue-800 text-sm font-['Noto Sans JP'] font-semibold p-2.5 rounded">在庫あり (<%= @product.stock %>)</span>
               <% else %>
-                <span class="bg-red-100 text-red-800 text-sm font-semibold p-2.5 rounded">Out of stock</span>
+                <span class="bg-red-100 text-red-800 text-sm font-['Noto Sans JP'] font-semibold p-2.5 rounded">在庫なし</span>
               <% end %>
             </div>
             <div class="ml-4">
