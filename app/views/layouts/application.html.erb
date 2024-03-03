@@ -150,7 +150,6 @@
             <% end %>
           </div>
 
-          <%# ログインメニューアイコン pt-2で無理やり高さ調整(PC画面) %>
           <div class="flex items-center justify-center pt-2 md:px-2">
             <div class="relative inline-block text-left dropdown">
               <button class="inline-flex justify-center w-full px-2 text-sm font-medium leading-5 text-dark-green transition duration-150 ease-in-out  rounded-md" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
@@ -159,23 +158,23 @@
                 </svg>
               </button>
               <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
-                <div class="absolute right-0 w-56 mt-2 origin-top-right bg-gray-100 border border-gray-200 divide-y divide-gray-200 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                <div class="absolute right-0 w-56 mt-1 origin-top-right bg-white border border-gray-100 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                   <div class="px-4 py-3">
-                    <p class="text-sm text-dark-green leading-5">Signed in as</p>
-                    <p class="text-sm font-medium leading-5 text-gray-900 truncate"><%= current_customer.email %></p>
+                    <p class="text-sm text-dark-green leading-5 font-['Noto Sans'] font-medium">Signed in as</p>
+                    <p class="text-sm font-medium leading-5 text-gray-500 truncate font-['Noto Sans'] font-medium"><%= current_customer.email %></p>
                   </div>
                   <div class="py-1">
-                    <%= link_to edit_customer_registration_path, class: "text-dark-green flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                    <%= link_to edit_customer_registration_path, class: "text-dark-green flex justify-between w-full px-4 py-2 text-sm leading-5 text-left font-['Noto Sans'] font-medium" do %>
                       Account settings
                     <% end %>
                   </div>
                   <div class="py-1">
-                    <%= link_to orders_path, class: "text-dark-green flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                    <%= link_to orders_path, class: "text-dark-green flex justify-between w-full px-4 py-2 text-sm leading-5 text-left font-['Noto Sans'] font-medium" do %>
                       Order Histories
                     <% end %>
                   </div>
                   <div class="py-1">
-                    <%= link_to destroy_customer_session_path, data: { turbo_method: :delete }, class: "text-dark-green flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" do %>
+                    <%= link_to destroy_customer_session_path, data: { turbo_method: :delete }, class: "text-dark-green flex justify-between w-full px-4 py-2 text-sm leading-5 text-left font-['Noto Sans'] font-medium" do %>
                       Sign out
                     <% end %>
                   </div>
@@ -226,20 +225,20 @@
               Menu
             </button>
             <div class="invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2">
-              <div class="absolute right-0 w-40 -mt-1 origin-top-right bg-white divide-y divide-gray-100 rounded-lg rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
-                <div class="py-1">
-                  <%= link_to new_customer_session_path, class: "text-dark-green font-['Noto Sans JP'] text-sm font-medium px-4 py-2" do %>
-                    ログイン
+              <div class="absolute right-0 w-40 origin-top-right bg-white divide-y divide-gray-100 border border-gray-100 rounded-lg rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                <div class="py-2">
+                  <%= link_to new_customer_session_path, class: "text-dark-green font-['Noto Sans'] text-sm font-medium px-4 py-2 text-left" do %>
+                    Sign In
                   <% end %>
                 </div>
-                <div class="py-1">
-                  <%= link_to new_customer_registration_path, class: "text-dark-green font-['Noto Sans JP'] text-sm font-medium px-4 py-2" do %>
-                    新規会員登録
+                <div class="py-2">
+                  <%= link_to new_customer_registration_path, class: "text-dark-green font-['Noto Sans'] text-sm font-medium px-4 py-2 text-left" do %>
+                    Sign Up
                   <% end %>
                 </div>
-                <div class="py-1">
-                  <%= link_to products_path, class: "text-dark-green font-['Noto Sans JP'] text-sm font-medium px-4 py-2" do %>
-                    商品一覧
+                <div class="py-2">
+                  <%= link_to products_path, class: "text-dark-green font-['Noto Sans'] text-sm font-medium px-4 py-2 text-left" do %>
+                    Products
                   <% end %>
                 </div>
               </div>
