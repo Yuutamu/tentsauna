@@ -1,18 +1,20 @@
-<body bgcolor="#F1EEE7">
-	<div class="p-6 md:mx-auto text-center">
-		<p class="md:text-2xl text-base text-gray-800 font-semibold">Are you sure?</p>
-		<p class="text-gray-600 my-2">If you withdraw from TentSauna, you will no longer be able to log in with this account.</p>
-		<div class="flex justify-center items-center space-x-4">
-			<div class="text-center py-8">
-				<%= link_to withdraw_customers_path, data: { "turbo-method": :patch }, class: "px-5 py-2.5 focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-md shadow" do %>
-					Withdraw
-				<% end %>
-			</div>
-			<div class="text-center py-8">
-				<%= link_to edit_customer_registration_path, class: "px-5 py-2.5 text-gray-800 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-md shadow" do %>
-					Cancel
-				<% end %>
-			</div>
+<%# 退会確認画面 %>
+<div class="p-6 md:mx-auto text-center">
+	<div class="bg-gray-100 shadow rounded-lg p-6">
+		<p class="md:text-xl text-base font-['Noto Sans'] text-dark-green font-semibold text-left">Are you sure?</p>
+		<p class="text-base font-['Noto Sans JP'] text-dark-green text-left my-2">退会すると、このアカウントでログインできなくなります。</p>
+	</div>
+	<div class="flex justify-center items-center space-x-4">
+		<div class="text-center py-8">
+			<%= link_to withdraw_customers_path, data: { "turbo-method": :patch }, class: "px-5 py-2.5 focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-md shadow font-['Noto Sans JP']" do %>
+				退会する
+			<% end %>
+		</div>
+		<div class="text-center py-8">
+			<%= link_to edit_customer_registration_path, class: "px-5 py-2.5 text-gray-800 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-md shado font-['Noto Sans JP']" do %>
+				キャンセル
+			<% end %>
 		</div>
 	</div>
-</body>
+</div>
+
