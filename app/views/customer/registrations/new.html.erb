@@ -1,38 +1,37 @@
-<body bgcolor="#F1EEE7">
-  <div class="mb-6 text-center">
-    <span class="text-3xl font-bold text-dark-green font-['Noto Sans']">
-      Sign Up
-    </span>
-  </div>
+<div class="pt-10 mb-6 text-center">
+  <span class="text-2xl font-bold font-['Noto Sans'] text-dark-green">
+    Sign Up
+  </span>
+</div>
 
-  <div class='flex flex-wrap justify-center mb-6'>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "w-11/12 md:w-10/12 xl:w-8/12" }, data: { turbo: false } )  do |f| %>
-      <%= render "customer/shared/error_messages", resource: resource %>
-      
-      <div class="mb-6">
-        <%= f.label :name, class: "mb-2 block text-sm text-dark-green" %>
-        <%= f.text_field :name, class: "w-full rounded-md border border-light-green py-2 px-3 placeholder:text-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100" %>
-      </div>
-      
-      <div class="mb-6">
-        <%= f.label :email, class: "mb-2 block text-sm text-dark-green" %>
-        <%= f.email_field :email, class: "w-full rounded-md border border-light-green py-2 px-3 placeholder:text-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100" %>
-      </div>
-      
-      <div class="mb-6">
-        <%= f.label :password, "password", class: "mb-2 block text-sm text-dark-green" %>
-        <%= f.password_field :password, class: "w-full rounded-md border border-light-green py-2 px-3 placeholder:text-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100" %>
-      </div>
-      
-      <div class="mb-6">
-        <%= f.label :password_confirmation, class: "mb-2 block text-sm text-dark-green" %>
-        <%= f.password_field :password_confirmation, class: "w-full rounded-md border border-light-green py-2 px-3 placeholder:text-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100" %>
-      </div>
-      <%= f.submit '新規会員登録', class: "w-full h-[34px] mx-4 bg-light-green text-white text-sm font-bold font-['Noto Sans JP'] hover:text-gray-600 rounded-3xl justify-center items-center duration-100 ease-in-out hover:bg-gray-300 focus:outline-none cursor-pointer" %>
-    <% end %>
-  </div>
+<div class="flex flex-wrap justify-center mb-6">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "w-11/12 md:w-10/12 xl:w-8/12" }, data: { turbo: false } )  do |f| %>
+    <%= render "customer/shared/error_messages", resource: resource %>
+    
+    <div class="mb-6">
+      <%= f.label :name, class: "mb-2 block text-sm text-dark-green" %>
+      <%= f.text_field :name, class: "w-full rounded-md border border-light-green py-2 px-3 placeholder:text-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100" %>
+    </div>
+    
+    <div class="mb-6">
+      <%= f.label :email, class: "mb-2 block text-sm text-dark-green" %>
+      <%= f.email_field :email, class: "w-full rounded-md border border-light-green py-2 px-3 placeholder:text-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100" %>
+    </div>
+    
+    <div class="mb-6">
+      <%= f.label :password, "password", class: "mb-2 block text-sm text-dark-green" %>
+      <%= f.password_field :password, class: "w-full rounded-md border border-light-green py-2 px-3 placeholder:text-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100" %>
+    </div>
+    
+    <div class="mb-6">
+      <%= f.label :password_confirmation, class: "mb-2 block text-sm text-dark-green" %>
+      <%= f.password_field :password_confirmation, class: "w-full rounded-md border border-light-green py-2 px-3 placeholder:text-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100" %>
+    </div>
+    <%= f.submit '新規会員登録', class: "my-4 w-full h-[34px] bg-light-green text-white text-sm font-bold font-['Noto Sans JP'] hover:text-gray-600 rounded-3xl justify-center items-center" %>
+  <% end %>
+</div>
 
-  <div class="text-center">
-    <%= render "customer/shared/links" %>
-  </div>
-</body>
+<div class="text-center">
+  <%= render "customer/shared/links" %>
+</div>
+
