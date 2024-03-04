@@ -19,6 +19,8 @@ class Customer::CheckoutsController < ApplicationController
       payment_method_types: ['card'], # MEMO: 支払い方法（クレカ決済のみにする方針）
       line_items:,
 
+      # MEMO：配送希望日の入力欄
+      # TODO: 注文ごとにdashbord確認するタスクを省くために、処理を実装したい（DB,controller）
       custom_fields: [
         {
           key: 'delivery_date',
