@@ -1,10 +1,11 @@
 
-<div class="relative mx-auto max-w-screen-xl p-6">
-  <div class="grid grid-cols-1 items-start gap-10 md:grid-cols-2">
+
+<div class="relative mx-auto max-w-screen-xl ">
+  <div class="grid grid-cols-1 items-start md:gap-10 md:grid-cols-2">
     <div>
-      <%= image_tag @product.image, class: "aspect-square w-full rounded-xl object-cover" %>
+      <%= image_tag @product.image, class: "w-full pt-4 object-cover" %>
     </div>
-    <div class="">
+    <div class="p-6 bg-gray-50">
       <div class="flex flex-col justify-between">
         <div class="flex-col mb-6">
           <div class="max-w-[35ch]">
@@ -12,22 +13,26 @@
               <%= @product.name %>
             </h1>
           </div>
-          <div class="text-lg font-bold text-dark-green font-['Noto Sans'] text-right">
-            <%= number_to_currency(@product.price, unit: "¥", strip_insignificant_zeros: true) %>
+          <div class="flex justify-between items-center mt-2">
+            <div class="mt-2">
+              <% if @product.stock > 0 %>
+                <span class="bg-blue-100 text-blue-800 text-xs font-['Noto Sans JP'] font-semibold p-2 rounded">在庫あり (<%= @product.stock %>)</span>
+              <% else %>
+                <span class="bg-red-100 text-red-800 text-xs font-['Noto Sans JP'] font-semibold p-2 rounded">在庫なし</span>
+              <% end %>
+            </div>
+            <div class="mt-2 text-lg font-bold text-dark-green font-['Noto Sans'] text-right">
+              <%= number_to_currency(@product.price, unit: "¥", strip_insignificant_zeros: true) %>
+            </div>
           </div>
         </div>
+
         <div class="mb-3 text-dark-green text-base leading-relaxed font-['Noto Sans']">
           <p>
             <%= @product.description %>
           </p>
         </div>
-        <div class="mt-2 mb-8">
-          <% if @product.stock > 0 %>
-            <span class="bg-blue-100 text-blue-800 text-xs font-['Noto Sans JP'] font-semibold p-2 rounded">在庫あり (<%= @product.stock %>)</span>
-          <% else %>
-            <span class="bg-red-100 text-red-800 text-xs font-['Noto Sans JP'] font-semibold p-2 rounded">在庫なし</span>
-          <% end %>
-        </div>
+        
         <% if @product.stock > 0 %>
           <%= form_with model: @cart_item, data: { turbo: false } do |f| %>
             <%= f.hidden_field :product_id, :value => @product.id %>
@@ -38,3 +43,5 @@
     </div>
   </div>
 </div>
+
+
