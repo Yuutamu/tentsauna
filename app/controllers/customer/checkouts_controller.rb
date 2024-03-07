@@ -30,7 +30,7 @@ class Customer::CheckoutsController < ApplicationController
           },
           optional: true,
           type: 'text'
-        },
+        }
       ],
 
       shipping_address_collection: {
