@@ -51,7 +51,9 @@ Rails.application.routes.draw do
   end
 
   # 静的なページ
-  # TODO:処理を実装する
+  get  'law_pages/privacy_policy'
+  get  'law_pages/tokusyo'
+  get  'law_pages/terms'
 
   get '/up/', to: 'up#index', as: :up
   get '/up/databases', to: 'up#databases', as: :up_databases
