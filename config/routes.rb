@@ -50,6 +50,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # 静的なページ
+  # TODO:処理を実装する
+
   get '/up/', to: 'up#index', as: :up
   get '/up/databases', to: 'up#databases', as: :up_databases
 end
