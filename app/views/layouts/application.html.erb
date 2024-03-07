@@ -329,7 +329,7 @@
           </div>
           <div class="pt-2 text-gray-200 text-xs md:text-base font-['Noto Sans JP'] leading-snug">
             <div class="pt-2">
-              商品一覧
+              <%= link_to '商品一覧', products_path(anchor: 'all_products') %>
             </div>
             <div class="pt-2">
               商品リクエスト
@@ -345,10 +345,10 @@
           </div>
           <div class="pt-2 text-gray-200 text-xs md:text-base font-['Noto Sans JP'] leading-snug">
             <div class="pt-2">
-              ご利用ガイド
+              <%= link_to 'ご利用ガイド', root_path(anchor: 'guide') %>
             </div>
             <div class="pt-2">
-              よくある質問
+              <%= link_to 'よくある質問', root_path(anchor: 'faq') %>
             </div>
             <div class="pt-2">
               プライバシーポリシー
