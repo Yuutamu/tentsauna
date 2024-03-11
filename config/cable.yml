@@ -1,3 +1,4 @@
+# MEMO: Action Cable を利用しないので不要
 default: &default
   adapter: "redis"
   url: "<%= ENV.fetch("REDIS_URL") { "redis://redis:6379/1" } %>"
