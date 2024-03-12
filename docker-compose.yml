@@ -102,8 +102,8 @@ services:
           memory: "${DOCKER_WORKER_MEMORY:-0}"
     profiles: ["worker"]
 
-  # Action Cable サーバを構築するためのコンテナ　チャット機能いらないので、不要。
-  # MEMO：問題なければ削除予定
+  # Action Cable サーバを構築するためのコンテナ チャット機能いらないので、不要。
+  # TODO：問題なければ削除予定
 
   # cable:
   #   <<: *default-app
