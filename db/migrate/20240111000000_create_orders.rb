@@ -1,3 +1,4 @@
+# MEMO: Render-Deploy時に migration-fileは日付順にmigrateされるので日付調整済み
 class CreateOrders < ActiveRecord::Migration[7.1]
   def change
     create_table :orders do |t|
