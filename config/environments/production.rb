@@ -1,7 +1,7 @@
 require "active_support/core_ext/integer/time"
 
+# MEMO:ここで指定した設定は、config/application.rb の設定よりも優先される。
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
   config.enable_reloading = false
@@ -16,6 +16,7 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
+  # MEMO: config/master.key, ENV["RAILS_MASTER_KEY"] などを有効にすることに関して 
   # Ensures that a master key has been made available in ENV["RAILS_MASTER_KEY"], config/master.key, or an environment
   # key such as config/credentials/production.key. This key is used to decrypt credentials (and other encrypted files).
   # config.require_master_key = true
@@ -37,6 +38,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
+  # MEMO: アップロードされたファイルをローカル ファイル システムに保存
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
@@ -44,6 +46,7 @@ Rails.application.configure do
   # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
   # config.assume_ssl = true
 
+  # MEMO: SSL設定
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
 
@@ -55,8 +58,10 @@ Rails.application.configure do
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 
+  # MEMO：Action Mailer 設定
   config.action_mailer.perform_caching = false
 
+  # MEMO: Action Mailer 不正メールアドレスを省く機能（正常な機能を邪魔することもアリそうなので、一旦コメントアウト）
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
@@ -71,7 +76,7 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  # Do not dump schema after migrations.
+  # 公式Doc参照:migration関連（https://railsguides.jp/configuring.html#:~:text=3.8.22%20config.active_record.dump_schema_after_migration）
   config.active_record.dump_schema_after_migration = false
 
   # Enable DNS rebinding protection and other `Host` header attacks.

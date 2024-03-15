@@ -1,5 +1,7 @@
 require "active_support/core_ext/integer/time"
 
+# MEMO：開発環境では、アプリケーションのコードは変更されるたびに再ロードされる。
+# MEMO：これにより応答時間は遅くなるが、コードを変更するときに Web サーバーを再起動する必要がないため、開発には最適なので採用。
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -33,9 +35,11 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # MEMO:アップロードされたファイルをローカル ファイル システムに保存
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+  # MEMO：ActionMailer設定 （メール送信ができていないことを無視する）
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
@@ -81,12 +85,14 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  # MEMO：i18機能の翻訳が見つからなった場合にエラーを発生させる（ja.ymlのログをきちんとカバーする必要がある）
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 
+  # MEMO:Action Cable 設定
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
