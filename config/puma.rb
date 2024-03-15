@@ -6,6 +6,8 @@
 bind "tcp://0.0.0.0:#{ENV.fetch('PORT') { '8000' }}"
 environment ENV.fetch('RAILS_ENV') { 'production' }
 
+# MEMO: threadなどのパフォーマンスに関して
+# MEMO: redis,sidekiq の使い方とも絡んでくる内容なので、現状では問題が発生すれば値を変更していく方針にする。
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers: a minimum and maximum.
 # Any libraries that use thread pools should be configured to match
@@ -29,6 +31,7 @@ worker_timeout 3600 if ENV.fetch('RAILS_ENV', 'development') == 'development'
 # This directive tells Puma to first boot the application and load code
 # before forking the application. This takes advantage of Copy On Write
 # process behavior so workers use less memory.
+# MEMO: この部分に関しても Render公式Doc に則ることとする。
 preload_app!
 
 # Allow puma to be restarted by `bin/rails restart` command.
