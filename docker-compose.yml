@@ -129,7 +129,8 @@ services:
     <<: *default-assets
     command: "yarn build:css"
   
-  # Stripe CLI 起動せずに決済可能にする
+  # TODO:Stripe CLI 起動せずに決済可能にする
+  # TODO:Stripe 本番利用申請が通ったあとにVIエディタからcredentialsに加筆する
   stripe:
     image: stripe/stripe-cli:latest
     command: "listen --forward-to localhost:8000/webhooks --api-key ${STRIPE_API_KEY}"
