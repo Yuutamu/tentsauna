@@ -31,8 +31,8 @@ ARG RAILS_ENV="production"
 ARG NODE_ENV="production"
 ENV RAILS_ENV="${RAILS_ENV}" \
     NODE_ENV="${NODE_ENV}" \
-    # 変更MEMO："${PATH}:/home/ruby/.local/bin:/node_modules/.bin"から削除
-    PATH="${PATH}:node_modules/.bin" \
+    # 変更MEMO："${PATH}:/home/ruby/.local/bin:/node_modules/.bin" \
+    PATH="${PATH}:/home/ruby/.local/bin:/node_modules/.bin" 
     USER="ruby"
 
 COPY --chown=ruby:ruby . .
