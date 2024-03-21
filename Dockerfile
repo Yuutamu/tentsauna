@@ -20,8 +20,9 @@ RUN bash -c "set -o pipefail && apt-get update \
   && rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man \
   && apt-get clean \
   && groupadd -g \"${GID}\" ruby \
-  && useradd --create-home --no-log-init -u \"${UID}\" -g \"${GID}\" ruby \
-  && mkdir /node_modules && chown ruby:ruby -R /node_modules /app"
+  && useradd --create-home --no-log-init -u \"${UID}\" -g \"${GID}\" ruby 
+  # MEMO: mkdir /node_modules を削除 (上行の \ も削除していることに注意 )
+  # && mkdir /node_modules && chown ruby:ruby -R /node_modules /app"
 
 USER ruby
 
