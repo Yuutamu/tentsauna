@@ -9,7 +9,7 @@ Rails.application.config.assets.version = '1.0'
 # Add node_modules folder to the asset load path, its location has been
 # customized due to what's set in .yarnrc.
 # MEMO: '/node_modules' → 'node_modules' に変更
-Rails.application.config.assets.paths << 'node_modules'
+Rails.application.config.assets.paths << '/node_modules'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
