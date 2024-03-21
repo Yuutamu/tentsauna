@@ -17,6 +17,6 @@ services:
         fromDatabase:
           name: tentsauna_app
           property: connectionString
-      # - key: RAILS_MASTER_KEY # TODO: 設定必要 
+      - key: RAILS_MASTER_KEY
         # sync: false # MEMO: Renderのダッシュボード側からも設定できるが、明示的に示したほうが良いコード
     # autoDeploy: false # MEMO: Renderのダッシュボード側からも設定できるが、明示的に示したほうが良いコード
