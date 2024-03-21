@@ -21,9 +21,7 @@ RUN bash -c "set -o pipefail && apt-get update \
   && apt-get clean \
   && groupadd -g \"${GID}\" ruby \
   && useradd --create-home --no-log-init -u \"${UID}\" -g \"${GID}\" ruby \
-  && mkdir node_modules && chown ruby:ruby -R node_modules /app"
-
-# MEMO: /node_modules → node_modules に変更
+  && mkdir /node_modules && chown ruby:ruby -R /node_modules /app"
 
 USER ruby
 
@@ -38,7 +36,6 @@ ARG NODE_ENV="production"
 ENV RAILS_ENV="${RAILS_ENV}" \
     NODE_ENV="${NODE_ENV}" \
     # MEMO："${PATH}:/home/ruby/.local/bin:/node_modules/.bin" \ このパスは正しいのか？
-    # MEMO: /node_modules → node_modules に変更
     PATH="${PATH}:/home/ruby/.local/bin:/node_modules/.bin" \
     USER="ruby"
 
