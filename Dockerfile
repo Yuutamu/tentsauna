@@ -38,6 +38,7 @@ ARG NODE_ENV="production"
 ENV RAILS_ENV="${RAILS_ENV}" \
     NODE_ENV="${NODE_ENV}" \
     # MEMO："${PATH}:/home/ruby/.local/bin:/node_modules/.bin" \ このパスは正しいのか？
+    # MEMO: /node_modules → node_modules に変更
     PATH="${PATH}:/home/ruby/.local/bin:/node_modules/.bin" \
     USER="ruby"
 
