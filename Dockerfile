@@ -6,6 +6,10 @@ WORKDIR /app
 ARG UID=1000
 ARG GID=1000
 
+# MEMO: master_key (参照：https://techblog.lclco.com/entry/2021/07/27/110000)
+ARG master_key
+ENV RAILS_MASTER_KEY=master_key
+
 # MEMO: bash を利用
 RUN bash -c "set -o pipefail && apt-get update \
   && apt-get install -y --no-install-recommends build-essential curl git libpq-dev \
