@@ -48,9 +48,9 @@ services:
           cpus: "${DOCKER_POSTGRES_CPUS:-0}"
           memory: "${DOCKER_POSTGRES_MEMORY:-0}"
     environment:
-      POSTGRES_USER: "${POSTGRES_USER}"
-      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-      POSTGRES_DB: "${POSTGRES_DB}" # ${POSTGRES_DB}の値は .env で設定
+      POSTGRES_USER: "${POSTGRES_USER}" # MEMO: vi側から設定済み 3/23
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}" # MEMO: vi側から設定済み 3/23
+      POSTGRES_DB: "${POSTGRES_DB}" # MEMO: vi側から設定済み 3/23
     image: "postgres:16.1-bookworm"
     profiles: ["postgres"]
     restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
