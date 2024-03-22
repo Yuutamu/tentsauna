@@ -1,3 +1,6 @@
+# MEMO：現在、Blueprintとの接続を切っているので、このファイルは利用していない
+# MEMO：参照（：https://dashboard.render.com/blueprint/exs-cnslcqed3nmc73apc1o0/settings）
+
 databases:
   - name: tentsauna_app
     databaseName: tentsauna_app
