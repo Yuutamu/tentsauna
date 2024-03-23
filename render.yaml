@@ -16,10 +16,10 @@ services:
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
-      - key: <%= ENV['DATABASE_URL'] %>
+      - key: ENV['DATABASE_URL']
         fromDatabase:
           name: tentsauna_app
           property: connectionString
-      - key: <%= ENV['RAILS_MASTER_KEY'] %>
-        sync: false # MEMO: Renderのダッシュボード側からも設定できるが、明示的に示したほうが良いコード
-    # autoDeploy: false # MEMO: Renderのダッシュボード側からも設定できるが、明示的に示したほうが良いコード
+      - key: ENV['RAILS_MASTER_KEY']
+        sync: false # MEMO: Renderのダッシュボード側からも設定できるが、明示的に示す
+    autoDeploy: false # MEMO: Renderのダッシュボード側からも設定できるが、明示的に示す
