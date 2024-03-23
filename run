@@ -127,10 +127,10 @@ function yarn:build:css {
     -o ./app/assets/builds/application.css "${args[@]}"
 }
 
-# MEMO: node_module 操作の命令に対して sudo を付与する
+# MEMO: sudo の付与を削除（もとに戻した）
 function clean {
   # Remove cache and other machine generates files
-  sudo rm -rf node_modules/ app/assets/builds/* public/assets tmp/* .byebug_history
+  rm -rf node_modules/ app/assets/builds/* public/assets tmp/* .byebug_history
 }
 
 function ci:install-deps {

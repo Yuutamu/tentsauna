@@ -21,8 +21,8 @@ RUN bash -c "set -o pipefail && apt-get update \
   && apt-get clean \
   && groupadd -g \"${GID}\" ruby \
   && useradd --create-home --no-log-init -u \"${UID}\" -g \"${GID}\" ruby \
-  && sudo mkdir /node_modules && ruby:ruby -R /node_modules /app"
-# MEMO: sudo を付与している
+  && mkdir /node_modules && ruby:ruby -R /node_modules /app"
+# MEMO: sudo の付与を削除（もとに戻した）
 
 USER ruby
 
